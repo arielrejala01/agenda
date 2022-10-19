@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body_block %}
+  <ul>
+    <li>{{ detalle_agenda.cliente.nombre }}</li>
+    <li>{{ detalle_agenda.fecha_hora }}</li>
+    <li>{{ detalle_agenda.descripcion }}</li>
+  </ul>
+  <a href="{% url 'basic_app:actualizar_agenda' pk=detalle_agenda.id %}" class="btn btn-warning">Actualizar</a>
+  <a href="{% url 'basic_app:eliminar_agenda' pk=detalle_agenda.id %}" class="btn btn-danger">Eliminar</a>
+{% endblock %}

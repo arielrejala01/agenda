@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body_block %}
+  <ul>
+    <li>{{ detalle_cliente.ci }}</li>
+    <li>{{ detalle_cliente.nombre }}</li>
+    <li>{{ detalle_cliente.apellido }}</li>
+    <li>{{ detalle_cliente.email }}</li>
+    <li>{{ detalle_cliente.tel }}</li>
+    <li>{{ detalle_cliente.direccion }}</li>
+  </ul>
+  <a href="{% url 'basic_app:actualizar_cliente' pk=detalle_cliente.id %}" class="btn btn-warning">Actualizar</a>
+  <a href="{% url 'basic_app:eliminar_cliente' pk=detalle_cliente.id %}" class="btn btn-danger">Eliminar</a>
+{% endblock %}
