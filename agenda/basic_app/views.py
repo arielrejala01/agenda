@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from . import models
+from django.forms.models import ModelForm
+from basic_app.forms import AgendaFormCrear,AgendaFormActualizar
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate,login,logout
@@ -41,11 +43,11 @@ class detalle_agenda(DetailView):
     template_name = 'basic_app/detail_view_agenda.html'
 
 class AgendaCrear(CreateView):
-    fields = ('cliente','fecha_hora','descripcion')
+    form_class = AgendaFormCrear
     model = models.Agenda
 
 class AgendaActualizar(UpdateView):
-    fields = ('fecha_hora','descripcion')
+    form_class = AgendaFormActualizar
     model = models.Agenda
 
 class AgendaEliminar(DeleteView):
