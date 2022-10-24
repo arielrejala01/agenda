@@ -1,0 +1,49 @@
+#home {
+    margin-top: 20%;
+    text-align: center;
+}
+
+.container{
+    margin-top: 10px;
+}
+.titulo {
+    text-align: center;
+}
+table {
+    margin-top: 10px;
+}
+
+.pagination {
+    margin-top: 15px;
+    margin-left: 43%;
+}
+
+#crear {
+    margin-left: 46%;
+}
+
+#actualizar {
+    margin-left: 41%;
+}
+
+.confirmar {
+    margin-top: 5%;
+}
+
+h1, h2  {
+    text-align: center;
+}
+
+#eliminar {
+    margin-left: 43%;
+}
+
+.forms {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+div p {
+    text-align: center;
+}

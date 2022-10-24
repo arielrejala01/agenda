@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from . import models
-from django.forms.models import ModelForm
 from basic_app.forms import AgendaFormCrear,AgendaFormActualizar
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -12,7 +11,16 @@ from django.views.generic import TemplateView, DetailView, ListView, CreateView,
 class lista_cliente(ListView):
     context_object_name = 'lista_cliente'
     model = models.Cliente
+    paginate_by = 10
     template_name = 'basic_app/lista_cliente.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('buscar')
+        if query:
+            object_list = self.model.objects.filter(ci__icontains=query)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 class detalle_cliente(DetailView):
     context_object_name = 'detalle_cliente'
@@ -21,8 +29,17 @@ class detalle_cliente(DetailView):
 
 class lista_agenda(ListView):
     context_object_name = 'lista_agenda'
+    paginate_by = 10
     model = models.Agenda
     template_name = 'basic_app/lista_agenda.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('buscar')
+        if query:
+            object_list = self.model.objects.filter(cliente__ci__icontains=query)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 class cliente_crear(CreateView):
     fields = ('ci','nombre','apellido','email','tel','direccion')
@@ -72,11 +89,11 @@ def user_login(request):
                 login(request,user,backend=None)
                 return HttpResponseRedirect(reverse('basic_app:index'))
             else:
-                return HttpResponse("User is not active")
+                return HttpResponse("Usuario no está activo")
         else:
-            print("Someone tried to login and failed")
-            print("Username: {} and password {}".format(username,password))
-            return HttpResponse("Invalid login details incovenient")
+            print("Alguien ha intentado ingresar y falló")
+            print("Username: {} y password {}".format(username,password))
+            return HttpResponse("Login inválido")
     else:
         return render(request,"login.html",{})
 

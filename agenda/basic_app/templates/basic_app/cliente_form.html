@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% block head_block %}
+  <link href="/static/base.css" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block body_block %}
   <h1>{% if not form.instance.pk %}
     Crear Cliente
   {% else %}
     Actualizar Cliente
   {% endif %}</h1>
-  <form method="POST">
+  <form method="POST" class="forms">
   {% csrf_token %}
+    <div class="form-outline mb-4">
   {{ form.as_p }}
-  <input type="submit" value="Enviar">
+    </div>
+  <input type="submit" value="Enviar" class="btn btn-success" id="crear">
   </form>
 {% endblock %}

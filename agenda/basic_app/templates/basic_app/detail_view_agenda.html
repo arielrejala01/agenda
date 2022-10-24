@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
+{% block head_block %}
+  <link href="/static/base.css" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block body_block %}
-  <ul>
-    <li>{{ detalle_agenda.cliente.nombre }}</li>
-    <li>{{ detalle_agenda.fecha_hora }}</li>
-    <li>{{ detalle_agenda.descripcion }}</li>
-  </ul>
-  <a href="{% url 'basic_app:actualizar_agenda' pk=detalle_agenda.id %}" class="btn btn-warning">Actualizar</a>
+  <table class="table table-bordered">
+    <tr>
+      <th>CI</th>
+      <th>Nombre y Apellido</th>
+      <th>Fecha y Hora</th>
+      <th>Descripción</th>
+    </tr>
+    <tr>
+      <td>{{ detalle_agenda.cliente.ci }}</td>
+      <td>{{ detalle_agenda.cliente.nombre }} {{ detalle_agenda.cliente.apellido }}</td>
+      <td>{{ detalle_agenda.fecha_hora }}</td>
+      <td>{{ detalle_agenda.descripcion }}</td>
+    </tr>
+  </table>
+  <a href="{% url 'basic_app:actualizar_agenda' pk=detalle_agenda.id %}" class="btn btn-warning" id="actualizar">Actualizar</a>
   <a href="{% url 'basic_app:eliminar_agenda' pk=detalle_agenda.id %}" class="btn btn-danger">Eliminar</a>
 {% endblock %}

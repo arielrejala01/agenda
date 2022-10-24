@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+{% block head_block %}
+  <link href="/static/base.css" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block body_block %}
-  <h1>Confirmacion</h1>
-  <h2>Desea eliminar el cliente con nombre: {{ cliente.nombre }}</h2>
-  <form method="POST">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-danger" value="Eliminar">
-    <a href="{% url 'basic_app:lista_cliente'%}" class="btn btn-secondary">Cancelar</a>
-  </form>
+  <div class="confirmar">
+    <h1>Confirmacion</h1>
+    <h2>Desea eliminar el cliente con nombre: {{ cliente.nombre }}</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger" value="Eliminar" id="eliminar">
+      <a href="{% url 'basic_app:lista_cliente'%}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
 {% endblock %}

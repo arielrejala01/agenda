@@ -1,9 +1,61 @@
 {% extends 'base.html' %}
+{% block head_block %}
+  <link href="/static/base.css" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block body_block %}
-  <ol>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-12 search">
+      <form method="get">
+        <div id="custom-search-input">
+          <div class="input-group col-md-12">
+            <input type="text" class="form-control" placeholder="Buscar" name="buscar" value='{{ request.GET.buscar }}'>
+            <span class="input-group-list">
+              <i class="icon icon-search">
+                <button type="submit" class="btn btn-success">Buscar</button>
+              </i>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>#</th>
+      <th>CI</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+    </tr>
     {% for cliente in lista_cliente %}
-      <li><a href="{% url 'basic_app:detalle_cliente' pk=cliente.id %}">{{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+      <tr>
+      <td><a href="{% url 'basic_app:detalle_cliente' pk=cliente.id %}">#</a></td>
+        <td>{{ cliente.ci }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.apellido }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.tel }}</td>
+        <td>{{ cliente.direccion }}</td>
+      </tr>
     {% endfor %}
-  </ol>
-  <a href="{% url 'basic_app:crear_cliente' %}" class="btn btn-success">Crear</a>
+  </table>
+  <a href="{% url 'basic_app:crear_cliente' %}" class="btn btn-success" id="crear">Crear</a>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+      {% endif %}
+        <span class="current">
+        <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+        </span>
+        {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Siguiente</a></li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock %}

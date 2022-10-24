@@ -16,4 +16,3 @@ class AgendaFormActualizar(forms.ModelForm):
         widgets = {
             'fecha_hora': forms.DateInput(attrs={'type': 'datetime-local'})
         }
-        

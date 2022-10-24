@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
+{% block head_block %}
+  <link href="/static/base.css" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block body_block %}
-  <ul>
-    <li>{{ detalle_cliente.ci }}</li>
-    <li>{{ detalle_cliente.nombre }}</li>
-    <li>{{ detalle_cliente.apellido }}</li>
-    <li>{{ detalle_cliente.email }}</li>
-    <li>{{ detalle_cliente.tel }}</li>
-    <li>{{ detalle_cliente.direccion }}</li>
-  </ul>
-  <a href="{% url 'basic_app:actualizar_cliente' pk=detalle_cliente.id %}" class="btn btn-warning">Actualizar</a>
+  <table class="table table-bordered">
+    <tr>
+      <th>CI</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+    </tr>
+    <tr>
+      <td>{{ detalle_cliente.ci }}</td>
+      <td>{{ detalle_cliente.nombre }}</td>
+      <td>{{ detalle_cliente.apellido }}</td>
+      <td>{{ detalle_cliente.email }}</td>
+      <td>{{ detalle_cliente.tel }}</td>
+      <td>{{ detalle_cliente.direccion }}</td>
+    </tr>
+  </table>
+  <a href="{% url 'basic_app:actualizar_cliente' pk=detalle_cliente.id %}" class="btn btn-warning" id="actualizar">Actualizar</a>
   <a href="{% url 'basic_app:eliminar_cliente' pk=detalle_cliente.id %}" class="btn btn-danger">Eliminar</a>
 {% endblock %}
