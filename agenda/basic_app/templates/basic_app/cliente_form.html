@@ -14,5 +14,11 @@
   {{ form.as_p }}
     </div>
   <input type="submit" value="Enviar" class="btn btn-success" id="crear">
+  <input type="reset" value="Limpiar" class="btn btn-secondary">
+  {% if not form.instance.pk %}
+    <a href="{% url 'basic_app:lista_cliente' %}" class="btn btn-primary">Volver</a>
+  {% else %}
+    <a href="{% url 'basic_app:detalle_cliente' pk=cliente.id %}" class="btn btn-primary">Volver</a>
+  {% endif %}
   </form>
 {% endblock %}

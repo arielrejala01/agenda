@@ -9,7 +9,7 @@
       <form method="get">
         <div id="custom-search-input">
           <div class="input-group col-md-12">
-            <input type="text" class="form-control" placeholder="Buscar" name="buscar" value='{{ request.GET.buscar }}'>
+            <input type="text" class="form-control" placeholder="Buscar por CI" name="buscar" value='{{ request.GET.buscar }}'>
             <span class="input-group-list">
               <i class="icon icon-search">
                 <button type="submit" class="btn btn-success">Buscar</button>
@@ -45,6 +45,7 @@
     {% endfor %}
   </table>
   <a href="{% url 'basic_app:crear_cliente' %}" class="btn btn-success" id="crear">Crear</a>
+  <a href="{% url 'basic_app:lista_cliente' %}" class="btn btn-primary">Volver</a>
   <nav aria-label="Page navigation example">
       <ul class="pagination">
       {% if page_obj.has_previous %}

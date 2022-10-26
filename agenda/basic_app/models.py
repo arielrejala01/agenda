@@ -7,7 +7,7 @@ class Cliente(models.Model):
     ci = models.PositiveIntegerField(unique=True,verbose_name='Cédula de Identidad')
     nombre = models.CharField(max_length=100,default='',verbose_name='Nombre')
     apellido = models.CharField(max_length=100,default='',verbose_name='Apellido')
-    email = models.EmailField(max_length=100,default='',verbose_name='Email')
+    email = models.EmailField(max_length=100,default='',verbose_name='Email',unique=True)
     tel = models.CharField(max_length=20,default='',verbose_name='Teléfono')
     direccion = models.CharField(max_length=150,default='',verbose_name="Dirección")
 
